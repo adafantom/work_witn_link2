@@ -39,11 +39,11 @@ def main():
     headers = {
         "Authorization": "Bearer {}".format(bitly_api_key)
     } 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("user_link", help="user's link")
+    args = parser.parse_args()
+    user_link = args.user_link
     try:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("user_link", help="user's link")
-        args = parser.parse_args()
-        user_link = args.user_link
         if is_bitlink(headers, user_link):
             return f'Количество посещений: {count_click(headers, user_link)}'
         else:
